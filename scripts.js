@@ -71,6 +71,20 @@ function setColour(chosenColour) {
     colour = chosenColour;
 }
 
+function setToBlack() {
+    setColour("black");
+}
+
+let blackBtn = document.querySelector(".black");
+blackBtn.addEventListener("click", setToBlack);
+
+function setToRandom() {
+    setColour("random");
+}
+
+let randomBtn = document.querySelector(".random");
+randomBtn.addEventListener("click", setToRandom);
+
 function resetContainer() {
     let divs = document.querySelectorAll("div");
     divs.forEach((div) => div.style.backgroundColor = "white");
