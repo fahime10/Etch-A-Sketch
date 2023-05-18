@@ -1,8 +1,23 @@
 let colour = "black";
+let click = false;
 
 // this will wait for the HTML to load its content and the CSS to do the styling before any work
 document.addEventListener("DOMContentLoaded", function() {
     createContainer(16);
+
+    document.querySelector("body").addEventListener("click", function(e) {
+        // this allows to control the drawing, meaning when to carry on and when to stop by just a click
+        if (e.target.tagName != "BUTTON") {
+            click = !click;
+            let draw = document.querySelector(".draw");
+            if (click) {
+                draw.innerHTML = "Now you can draw";
+            }
+            else {
+                draw.innerHTML = "You cannot draw now";
+            }
+        }
+    });
 
     let select = document.querySelector(".select");
     select.addEventListener("click", function() {
@@ -42,16 +57,23 @@ function getSize() {
 }
 
 function colourDiv() {
-    if (colour == "random") {
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        console.log(colour);
-    }
-    else {
-        this.style.backgroundColor = "black";
-        console.log(colour);
+    if (click) {
+        if (colour == "random") {
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+        else {
+            this.style.backgroundColor = "black";
+        }
     }
 }
 
 function setColour(chosenColour) {
     colour = chosenColour;
 }
+
+function resetContainer() {
+    let divs = document.querySelectorAll("div");
+    divs.forEach((div) => div.style.backgroundColor = "white");
+}
+
+document.querySelector(".reset").addEventListener("click", resetContainer);
