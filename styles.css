@@ -6,6 +6,11 @@ body {
     flex-direction: column;
 }
 
+button {
+    height: 2rem;
+    width: 5rem;
+}
+
 .select {
     background-color: darksalmon;
     color: white;
